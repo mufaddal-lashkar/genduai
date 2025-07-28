@@ -69,7 +69,7 @@ export default function GenduLanding() {
             </p>
 
             {/* Founders Section */}
-            <div className="flex justify-center items-center space-x-6 mb-12">
+            {/* <div className="flex justify-center items-center space-x-6 mb-12">
               <div className="text-center">
                 <p className="text-lg font-semibold text-gray-200">Mufaddal</p>
                 <p className="text-xs text-green-400 uppercase tracking-wider">Founder</p>
@@ -93,6 +93,33 @@ export default function GenduLanding() {
 
               <div className="text-center">
                 <p className="text-lg font-semibold text-gray-200">Joel</p>
+                <p className="text-xs text-green-400 uppercase tracking-wider">Co-Founder</p>
+              </div>
+            </div> */}
+            <div className="grid grid-cols-2 sm:flex sm:justify-center sm:items-center gap-4 sm:gap-6 mb-8 sm:mb-10 lg:mb-12 w-full max-w-md sm:max-w-none">
+              <div className="text-center">
+                <p className="text-sm sm:text-base lg:text-lg font-semibold text-gray-200">Mufaddal</p>
+                <p className="text-xs text-green-400 uppercase tracking-wider">Founder</p>
+              </div>
+
+              <div className="hidden sm:block text-xl lg:text-2xl text-green-400 font-light">×</div>
+
+              <div className="text-center">
+                <p className="text-sm sm:text-base lg:text-lg font-semibold text-gray-200">Lucky</p>
+                <p className="text-xs text-gray-400 uppercase tracking-wider">Co-Founder</p>
+              </div>
+
+              <div className="hidden sm:block text-xl lg:text-2xl text-green-400 font-light">×</div>
+
+              <div className="text-center">
+                <p className="text-sm sm:text-base lg:text-lg font-semibold text-gray-200">Abhishek</p>
+                <p className="text-xs text-gray-400 uppercase tracking-wider">Co-Founder</p>
+              </div>
+
+              <div className="hidden sm:block text-xl lg:text-2xl text-green-400 font-light">×</div>
+
+              <div className="text-center">
+                <p className="text-sm sm:text-base lg:text-lg font-semibold text-gray-200">Joel</p>
                 <p className="text-xs text-green-400 uppercase tracking-wider">Co-Founder</p>
               </div>
             </div>
