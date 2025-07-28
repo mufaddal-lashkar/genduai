@@ -1,14 +1,10 @@
-// pages/api/voice.js
-
-// import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-// import { xml } from 'xml';
+import { IncomingForm } from 'formidable';
+import { parse } from 'querystring';
 
 export const config = {
     api: {
-        bodyParser: {
-            extended: false,
-        },
+        bodyParser: false,
     },
 };
 
@@ -18,22 +14,30 @@ export default async function handler(req, res) {
         return;
     }
 
-    const userSpeech = req.body.SpeechResult || 'Hello';
-    console.log('User said:', userSpeech);
+    let body = '';
+    req.on('data', chunk => {
+        body += chunk.toString();
+    });
 
-    const reply = await getGenduReply(userSpeech);
+    req.on('end', async () => {
+        const data = parse(body);
+        const userSpeech = data.SpeechResult || 'Hello';
+        console.log('User said:', userSpeech);
 
-    const twimlResponse = `
-    <Response>
-      <Say voice="Polly.Raveena">${reply}</Say>
-      <Gather input="speech" timeout="5" action="/api/voice" method="POST">
-        <Say>Say something else to Gendu AI...</Say>
-      </Gather>
-    </Response>
-  `;
+        const reply = await getGenduReply(userSpeech);
 
-    res.setHeader('Content-Type', 'text/xml');
-    res.status(200).send(twimlResponse);
+        const twimlResponse = `
+            <Response>
+              <Say voice="Polly.Raveena">${reply}</Say>
+              <Gather input="speech" timeout="5" action="/api/voice" method="POST">
+                <Say>Say something else to Gendu AI...</Say>
+              </Gather>
+            </Response>
+        `;
+
+        res.setHeader('Content-Type', 'text/xml');
+        res.status(200).send(twimlResponse);
+    });
 }
 
 async function getGenduReply(message) {
